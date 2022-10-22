@@ -1,0 +1,16 @@
+name: "Check File Existence"
+description: "GitHub Action to check if files exist in the project"
+author: "Mateus Félix"
+branding:
+  icon: "file-text"
+  color: "green"
+inputs:
+  files:
+    description: "Directory path with file name separated by comma to check for existence."
+    required: true
+outputs:
+  files_exists:
+    description: "Wheather the informed file(s) exists or not."
+runs:
+  using: "node16"
+  main: "dist/index.js"
