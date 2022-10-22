@@ -1,0 +1,12 @@
+on: [push]
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: A job to say hello
+    steps:
+      - name: Check file existence step
+        id: file-existence
+        uses: thebinaryfelix/file-existence-action@v0.1
+        with:
+          files: "test.js, fragments, index, index.js"
