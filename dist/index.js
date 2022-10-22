@@ -9688,19 +9688,14 @@ const core = __nccwpck_require__(4328);
 const github = __nccwpck_require__(1060);
 
 try {
-  // `who-to-greet` input defined in action metadata file
-  const nameToGreet = core.getInput("who-to-greet");
+  const files = core.getInput("files");
 
-  console.log(`Hello ${nameToGreet}!`);
+  console.log(`Files: ${files}!`);
 
-  const time = new Date().toTimeString();
+  // // Get the JSON webhook payload for the event that triggered the workflow
+  // const payload = JSON.stringify(github.context.payload, undefined, 2);
 
-  core.setOutput("time", time);
-
-  // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(github.context.payload, undefined, 2);
-
-  console.log(`The event payload: ${payload}`);
+  // console.log(`The event payload: ${payload}`);
 } catch (error) {
   core.setFailed(error.message);
 }
