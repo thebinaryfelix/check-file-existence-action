@@ -9,7 +9,7 @@ inputs:
     description: "Directory path with file name separated by comma to check for existence."
     required: true
 outputs:
-  files_exists:
+  file_exists:
     description: "Wheather the informed file(s) exists or not."
 runs:
   using: "node16"

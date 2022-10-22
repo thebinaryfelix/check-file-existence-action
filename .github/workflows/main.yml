@@ -5,6 +5,9 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to say hello
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+
       - name: Check file existence step
         id: file-existence
         uses: thebinaryfelix/file-existence-action@v0.1
