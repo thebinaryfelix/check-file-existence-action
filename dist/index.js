@@ -6255,7 +6255,7 @@ const run = async () => {
     // }
 
     await Promise.all(
-      fileList.map(async (file) => {
+      formattedFiles.map(async (file) => {
         const isPresent = await checkExistence(file);
         if (!isPresent) {
           console.log(`File: ${file} IS MISSING!`);
