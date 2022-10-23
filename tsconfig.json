@@ -13,12 +13,12 @@
     "noEmit": false,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": "./",
-    "outDir": "dist",
+    "outDir": "./lib",
     "tsBuildInfoFile": "./.cache/tsconfig.tsbuildinfo",
     "paths": {
       "~/*": ["src/*"]
     }
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "**/*.test.ts"]
 }

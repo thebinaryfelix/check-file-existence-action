@@ -5,7 +5,8 @@
   "author": "Mateus Félix <thebinaryfelix@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
+    "build": "ncc build",
+    "build:tsc": "tsc",
     "test": "jest --ci --no-cache --maxWorkers=50% --collectCoverage --detectOpenHandles",
     "test:dev": "jest --maxWorkers=50% --watch --detectOpenHandles",
     "prepare": "husky install"

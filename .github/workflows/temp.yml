@@ -1,0 +1,22 @@
+on: [push]
+
+jobs:
+  temporary_job:
+    runs-on: ubuntu-latest
+    name: Temporary Job
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+        - run: |
+            yarn test
+
+      - name: Check File Existence
+        id: check_files
+        uses: thebinaryfelix/file-existence-action@v0.1-alpha-0.14
+        with:
+          files: 'fragments/*, main.ts, testando.js'
+
+      - name: Checkout code
+        uses: actions/checkout@v1
+        - run: |
+            yarn build
