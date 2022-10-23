@@ -15,10 +15,14 @@ const run = async () => {
       // core.getInput("follow-symbolic-links").toUpper() !== "FALSE",
     };
 
-    const globber = await glob.create(files.join("\n"), globOptions);
+    const globber = await glob.create(files, globOptions);
+
+    const computedFiles = await globber.glob();
+
+    console.log("Computed files: ", computedFiles);
 
     for await (const file of globber.globGenerator()) {
-      console.log(file);
+      console.log("File of globber: ", file);
     }
 
     console.log(`Files to look for: ${fileNamesInput}`);
