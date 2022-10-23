@@ -5294,6 +5294,9 @@ const run = async () => {
 
     core.info(`Computed files: ${computedFiles}`);
 
+    console.log('Lengths', `computedFiles.length = ${computedFiles.length}, files.length = ${files.length}`)
+    console.log('typeofs', `typeof computedFiles = ${typeof computedFiles}, typeof files = ${typeof files}`)
+
     if (computedFiles.length < files.length) {
       core.setOutput("files_exists", "false");
     } else {
