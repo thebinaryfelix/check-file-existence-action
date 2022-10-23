@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "ES6",
     "module": "CommonJS",
     "lib": ["esnext"],
     "moduleResolution": "node",
@@ -10,12 +10,14 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "isolatedModules": true,
-    "noEmit": false,
+    "noEmit": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": "./",
+    "rootDir": "./src",
     "outDir": "./lib",
     "tsBuildInfoFile": "./.cache/tsconfig.tsbuildinfo",
     "paths": {
+      ".": ["./"],
       "~/*": ["src/*"]
     }
   },
