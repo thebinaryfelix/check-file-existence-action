@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: 18
           cache: yarn
-        run: yarn install && yarn test && yarn build
+      - run: yarn install && yarn test && yarn build
       - name: Check File Existence
         uses: ./
         with:
