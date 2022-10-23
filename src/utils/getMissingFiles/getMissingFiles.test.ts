@@ -20,6 +20,8 @@ describe('getMissingFiles', () => {
 
     const missingFiles = await getMissingFiles(patterns)
 
+    expect(mockedCheckFileExistence).toHaveBeenCalledTimes(patterns.length)
+
     expect(missingFiles).toEqual(['file2'])
   })
 })

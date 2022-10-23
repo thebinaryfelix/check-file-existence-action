@@ -3,6 +3,19 @@ import glob from 'glob'
 import { Inputs } from '~/@enums'
 import { getBooleanInput } from '~/utils'
 
+export const globResolution =
+  (
+    resolve: (value: boolean | Error | PromiseLike<boolean | Error>) => void,
+    reject: (reason: unknown) => void,
+  ) =>
+  (error: Error | null, files: string[]) => {
+    if (error) {
+      reject(error)
+    } else {
+      resolve(files.length > 0)
+    }
+  }
+
 export const checkFileExistence = async (
   pattern: string,
 ): Promise<Error | boolean> => {
@@ -12,12 +25,6 @@ export const checkFileExistence = async (
   }
 
   return new Promise((resolve, reject) => {
-    glob(pattern, globOptions, (error, files) => {
-      if (error) {
-        reject(error)
-      } else {
-        resolve(files.length > 0)
-      }
-    })
+    glob(pattern, globOptions, globResolution(resolve, reject))
   })
 }
