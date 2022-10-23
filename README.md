@@ -57,6 +57,40 @@ jobs:
         run: echo "All files exist!"
 ```
 
+# Contribute
+
+Feel free to fork this repository and open a Pull Request to:
+
+- Include a feature
+- Bugfixes
+- Update documentation
+
+To do so, follow the steps below:
+
+## Steps to contribute
+
+### Step 1 - Fork the repo
+
+Fork this repository and create a branch to work on.
+
+### Step 2 - Before openning a Pull Request
+
+Before openning a pull request, make sure you included the changelog `fragments`.
+
+To add a changelog fragment, execute `npx news-fragments create [type]` and replace `[type]` for one of the following:
+
+- feature
+- bugfix
+- doc
+- removal
+- misc
+
+Include a clear message of all the changes you are including in your pull request.
+
+### Step 3 - Open the pull request
+
+When openning your pull request, make sure to include all details of **what you did** and the **motivation** behind it.
+
 ## License
 
 Copyright © 2022 [Mateus Félix](https://github.com/thebinaryfelix)
