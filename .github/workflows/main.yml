@@ -3,13 +3,13 @@ on: [push]
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: Build
     steps:
       - name: Checkout code
         uses: actions/checkout@v1
 
-      - name: Check file existence step
-        id: file-existence
-        uses: thebinaryfelix/file-existence-action@v0.1-alpha-0.13
+      - name: Check File Existence
+        id: check_files
+        uses: ./
         with:
-          files: "fragments/*, */bulhufas.js, truta.js, index.js"
+          files: 'fragments/*'
