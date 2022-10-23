@@ -6270,7 +6270,7 @@ const run = async () => {
 
     if (missingFiles.length > 0) {
       core.setFailed(
-        `Some files are missing: ${missingFiles.split(",").join("\n")}`
+        `Some files are missing: ${missingFiles.join("\n")}`
       );
 
       core.setOutput("files_exists", "false");
