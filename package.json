@@ -8,7 +8,8 @@
     "build": "ncc build ./src/index.ts --license licenses.txt",
     "test": "jest --ci --no-cache --maxWorkers=50% --collectCoverage --detectOpenHandles",
     "test:dev": "jest --maxWorkers=50% --watch --detectOpenHandles",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "release": "yarn test && yarn build && HUSKY=0 npx release-it"
   },
   "dependencies": {
     "@actions/core": "^1.10.0",
@@ -19,6 +20,7 @@
     "@babel/preset-typescript": "^7.18.6",
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
+    "@release-it/bumper": "^4.0.0",
     "@types/glob": "^8.0.0",
     "@types/jest": "^29.2.0",
     "@typescript-eslint/eslint-plugin": "^5.40.1",
