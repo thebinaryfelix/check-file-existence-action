@@ -18,16 +18,16 @@ jobs:
         with:
           node-version: 18
           cache: yarn
+      - name: Install Dependencies
       - run: yarn install
+
+      - name: Run Tests
       - run: yarn test
+
+      - name: Build
       - run: yarn build
 
-  check_file_existence:
-    name: Check File Existence
-    runs-on: ubuntu-latest
-    if: ${{ success() }}
-    needs: [ci]
-    steps:
+      - name: Check File Existence
       - uses: ./
         id: actions-check-files
         with:
