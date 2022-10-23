@@ -25,10 +25,10 @@ jobs:
   check_file_existence:
     name: Check File Existence
     runs-on: ubuntu-latest
-    id: actions-check-files
     if: ${{ success() }}
     needs: [ci]
     steps:
       - uses: ./
+        id: actions-check-files
         with:
           files: 'fragments/*, src/index.ts'
