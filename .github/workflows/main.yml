@@ -12,4 +12,4 @@ jobs:
         id: file-existence
         uses: thebinaryfelix/file-existence-action@v0.3
         with:
-          files: "test.js, fragments, index, index.js"
+          files: "test.js, fragments/*, index, index.js, !.gitkeep"
