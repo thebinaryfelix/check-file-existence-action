@@ -5306,7 +5306,7 @@ const run = async () => {
     const globber = await glob.create(pattern, globOptions);
 
     for await (const file of globber.globGenerator()) {
-      core.info("Existing file: ", file);
+      core.info(`Existing file: ${file}`);
       computedFiles.push(file);
     }
 
