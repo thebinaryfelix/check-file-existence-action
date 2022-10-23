@@ -14,7 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+      - name: Checkout code
+
       - uses: actions/setup-node@v3
+      - name: Setup Node
         with:
           node-version: 18
           cache: yarn
@@ -22,8 +25,8 @@ jobs:
       - run: yarn test
       - run: yarn build
 
-      - name: Check File Existence
       - uses: ./
+      - name: Check File Existence
         id: actions-check-files
         with:
           files: 'fragments/*, src/index.ts'
