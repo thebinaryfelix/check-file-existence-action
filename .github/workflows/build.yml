@@ -10,20 +10,18 @@ name: Standard Build
 
 jobs:
   ci:
-    name: CI - Build and Test
+    name: CI - Test and Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v3
+      - name: Check out repository
+        uses: actions/checkout@v1
+      - name: Setup Node
+        uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: yarn
-        run: yarn install
-        run: yarn test
-        run: yarn build
-
-      - uses: ./
+        run: yarn install && yarn test && yarn build
       - name: Check File Existence
-        id: actions-check-files
+        uses: ./
         with:
           files: 'fragments/*, src/index.ts'
