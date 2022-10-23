@@ -1,5 +1,5 @@
 {
-  "name": "file-existence-action",
+  "name": "check-file-existence-action",
   "version": "0.0.1",
   "repository": "https://github.com/thebinaryfelix/file-existence-action.git",
   "author": "Mateus Félix <thebinaryfelix@gmail.com>",
