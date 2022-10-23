@@ -14,16 +14,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Checkout code
-
       - uses: actions/setup-node@v3
-      - name: Setup Node
         with:
           node-version: 18
           cache: yarn
-      - run: yarn install
-      - run: yarn test
-      - run: yarn build
+        run: yarn install
+        run: yarn test
+        run: yarn build
 
       - uses: ./
       - name: Check File Existence
