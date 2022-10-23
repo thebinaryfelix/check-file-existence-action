@@ -1,9 +1,9 @@
 on:
-  push:
+  pull_request:
     branches:
-      - main
+      - '*'
 
-name: Standard Build
+name: Pull Request Validation
 
 jobs:
   ci:
@@ -18,3 +18,7 @@ jobs:
           node-version: 18
           cache: yarn
       - run: yarn install && yarn test && yarn build
+      - name: Check File Existence
+        uses: ./
+        with:
+          files: 'fragments/*, src/index.ts'
