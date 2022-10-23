@@ -5269,6 +5269,11 @@ const core = __nccwpck_require__(4328);
 // const github = require("@actions/github");
 const glob = __nccwpck_require__(1734);
 
+const globOptions = {
+  followSymbolicLinks: false,
+  // core.getInput("follow-symbolic-links").toUpper() !== "FALSE",
+};
+
 const run = async () => {
   try {
     const missingFiles = [];
@@ -5277,25 +5282,19 @@ const run = async () => {
 
     core.info(`Files to look for: ${fileNamesInput}`);
 
-    const files = fileNamesInput
-      .split(",")
-      .map((file) => file.trim())
-      .join("\n");
+    const files = fileNamesInput.split(",").map((file) => file.trim());
 
-    const globOptions = {
-      followSymbolicLinks: false,
-      // core.getInput("follow-symbolic-links").toUpper() !== "FALSE",
-    };
+    const patterns = files.join("\n");
 
-    core.info(`Patterns: ${files}`);
+    core.info(`Patterns: ${patterns}`);
 
-    const globber = await glob.create(files, globOptions);
+    const globber = await glob.create(patterns, globOptions);
 
     const computedFiles = await globber.glob();
 
-    core.info("Computed files: ", computedFiles);
+    core.info(`Computed files: ${computedFiles}`);
 
-    if (computedFiles.length < fileNamesInput.length) {
+    if (computedFiles.length < files.length) {
       core.setOutput("files_exists", "false");
     } else {
       core.setOutput("files_exists", "true");
