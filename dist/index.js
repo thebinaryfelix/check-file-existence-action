@@ -5275,7 +5275,10 @@ const run = async () => {
 
     const fileNamesInput = core.getInput("files");
 
-    const files = fileNamesInput.split(",").map((file) => file.trim());
+    const files = fileNamesInput
+      .split(",")
+      .map((file) => file.trim())
+      .join("\n");
 
     const globOptions = {
       followSymbolicLinks: false,
