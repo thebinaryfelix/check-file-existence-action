@@ -8,6 +8,14 @@ inputs:
   files:
     description: 'File name with (optional) directory path, separated by comma.'
     required: true
+  follow_symlinks:
+    description: 'Whether to follow symbolic links.'
+    required: false
+    default: true
+  ignore_case:
+    description: 'Performe a case insentivive match.'
+    required: false
+    default: false
 outputs:
   exists:
     description: 'Whether the informed file(s) exists or not.'
