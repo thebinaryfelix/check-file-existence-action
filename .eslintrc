@@ -1,0 +1,20 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "env": {
+    "es2021": true,
+    "node": true,
+    "jest": true
+  },
+  "plugins": ["@typescript-eslint", "simple-import-sort"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "no-console": "warn",
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "@typescript-eslint/explicit-module-boundary-types": "off"
+  }
+}
