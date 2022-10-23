@@ -1,5 +1,5 @@
 import { Inputs } from './@enums'
-import { action } from './main'
+import { action } from './index'
 import {
   getMissingFiles,
   getPatterns,
