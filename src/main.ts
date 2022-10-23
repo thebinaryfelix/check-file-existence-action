@@ -7,7 +7,7 @@ import {
   setFinalOutput,
 } from '~/utils'
 
-const action = async () => {
+export const action = async () => {
   try {
     const inputFiles = getTextInput(Inputs.FILES)
 
@@ -20,4 +20,5 @@ const action = async () => {
     failExecution(error.message)
   }
 }
+
 action()

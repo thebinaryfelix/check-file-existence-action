@@ -1,6 +1,5 @@
 /** @type {import('@jest/types').Config.InitialOptions} */
 
-// Any custom config you want to pass to Jest
 module.exports = {
   roots: ['<rootDir>'],
   testEnvironment: 'node',
@@ -14,13 +13,20 @@ module.exports = {
     'jest-watch-typeahead/filename',
     'jest-watch-typeahead/testname',
   ],
-  collectCoverageFrom: ['**/*.ts', '!<rootDir>/node_modules/', '!src/@*/**/*'],
+  collectCoverageFrom: [
+    '**/*.ts',
+    'src/**/*.ts',
+    '!src/**/index.*',
+    '<rootDir>/src/utils/coreActions/index.ts',
+    '!<rootDir>/node_modules/',
+    '!src/@*/**/*',
+  ],
   coverageThreshold: {
     global: {
-      lines: 0,
-      branches: 0,
-      functions: 0,
-      statements: 0,
+      lines: 85,
+      branches: 85,
+      functions: 85,
+      statements: 85,
     },
   },
 }

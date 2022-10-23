@@ -38,8 +38,7 @@
   },
   "lint-staged": {
     "*.{js,ts}": [
-      "eslint --fix",
-      "yarn test --findRelatedTests"
+      "eslint --fix"
     ]
   },
   "release-it": {
