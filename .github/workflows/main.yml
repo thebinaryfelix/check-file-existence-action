@@ -10,6 +10,6 @@ jobs:
 
       - name: Check file existence step
         id: file-existence
-        uses: thebinaryfelix/file-existence-action@v0.1-alpha-0.10
+        uses: thebinaryfelix/file-existence-action@v0.1-alpha-0.11
         with:
-          files: "fragments/*, !*/fragments/.gitkeep, */bulhufas.js, truta.js, index.js"
+          files: "fragments/*, !fragments/.gitkeep, */bulhufas.js, truta.js, index.js"

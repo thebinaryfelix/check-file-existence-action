@@ -1,6 +1,7 @@
 const core = require("@actions/core");
 // const github = require("@actions/github");
-const glob = require("@actions/glob");
+// const glob = require("@actions/glob");
+import glob from "glob";
 
 const globOptions = {
   followSymbolicLinks: false,
@@ -24,8 +25,28 @@ const getMissingFiles = (inputFiles, computedFiles) => {
   return missingFiles;
 };
 
+export async function checkExistence(pattern) {
+  const globOptions = {
+    // follow: !(
+    //   (core.getInput('follow_symlinks') || 'true').toUpperCase() === 'FALSE'
+    // ),
+    // nocase: (core.getInput('ignore_case') || 'false').toUpperCase() === 'TRUE'
+  };
+  return new Promise((resolve, reject) => {
+    glob(pattern, globOptions, (err, files) => {
+      console.log("glob pattern:", pattern, "glob files:", files);
+      if (err) {
+        reject(err);
+      } else {
+        resolve(files.length > 0);
+      }
+    });
+  });
+}
+
 const run = async () => {
-  const computedFiles = [];
+  // const computedFiles = [];
+  const missingFiles = [];
 
   try {
     const inputFiles = core.getInput("files");
@@ -34,16 +55,26 @@ const run = async () => {
 
     const formattedFiles = inputFiles.split(",").map((file) => file.trim());
 
-    const pattern = formattedFiles.join("\n");
+    // const pattern = formattedFiles.join("\n");
 
-    const globber = await glob.create(pattern, globOptions);
+    // const globber = await glob.create(pattern, globOptions);
 
-    for await (const file of globber.globGenerator()) {
-      core.info(`Existing file: ${file}`);
-      computedFiles.push(file);
-    }
+    // for await (const file of globber.globGenerator()) {
+    //   core.info(`Existing file: ${file}`);
+    //   computedFiles.push(file);
+    // }
 
-    const missingFiles = getMissingFiles(formattedFiles, computedFiles);
+    await Promise.all(
+      fileList.map(async (file) => {
+        const isPresent = await checkExistence(file);
+        if (!isPresent) {
+          console.log(`File: ${file} IS MISSING!`);
+          missingFiles.push(file);
+        }
+      })
+    );
+
+    // const missingFiles = getMissingFiles(formattedFiles, computedFiles);
 
     console.log("Missing files:", missingFiles);
 
