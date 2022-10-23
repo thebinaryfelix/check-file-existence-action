@@ -9,7 +9,7 @@
     "test": "jest --ci --no-cache --maxWorkers=50% --collectCoverage --detectOpenHandles",
     "test:dev": "jest --maxWorkers=50% --watch --detectOpenHandles",
     "prepare": "husky install",
-    "release": "yarn test && yarn build && HUSKY=0 npx release-it"
+    "release": "HUSKY=0 npx release-it"
   },
   "dependencies": {
     "@actions/core": "^1.10.0",
