@@ -5,7 +5,7 @@
   "author": "Mateus Félix <thebinaryfelix@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "yarn test && ncc build ./src/index.ts --license licenses.txt",
+    "build": "ncc build ./src/index.ts --license licenses.txt",
     "test": "jest --ci --no-cache --maxWorkers=50% --collectCoverage --detectOpenHandles",
     "test:dev": "jest --maxWorkers=50% --watch --detectOpenHandles",
     "prepare": "husky install"

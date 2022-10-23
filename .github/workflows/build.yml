@@ -1,36 +1,36 @@
-# on: [push]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - '*'
 
-# jobs:
-#   hello_world_job:
-#     runs-on: ubuntu-latest
-#     name: Build
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v1
-
-#       - name: Check File Existence
-#         id: check_files
-#         uses: ./
-#         with:
-#           files: 'fragments/*'
-
-on: [push]
+name: Standard Build
 
 jobs:
-  temporary_job:
-    name: Temporary Job
+  ci:
+    name: CI - Build and Test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v1
+
       - name: Setup Node
         uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: yarn
       - run: yarn install
+      - run: yarn test
       - run: yarn build
 
-
-      - name: Check File Existence
-        id: check_files
-        uses: ./
-        with:
-          files: 'fragments/*, src/index.ts'
+  check_file_existence:
+    name: Check File Existence
+    id: actions-check-files
+    if: ${{ success() }}
+    needs: [ci]
+    steps:
+      uses: ./
+      with:
+        files: 'fragments/*, src/index.ts'
