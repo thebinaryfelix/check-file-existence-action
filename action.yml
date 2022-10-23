@@ -1,0 +1,24 @@
+name: 'Check File Existence'
+description: 'GitHub Action to check if file(s) exists'
+author: 'Mateus Félix'
+branding:
+  icon: 'file-text'
+  color: 'green'
+inputs:
+  files:
+    description: 'File name with (optional) directory path, separated by comma.'
+    required: true
+  follow_symlinks:
+    description: 'Whether to follow symbolic links.'
+    required: false
+    default: true
+  ignore_case:
+    description: 'Performe a case insentivive match.'
+    required: false
+    default: false
+outputs:
+  exists:
+    description: 'Whether the informed file(s) exists or not.'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
