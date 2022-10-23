@@ -33,4 +33,4 @@ jobs:
         id: check_files
         uses: ./
         with:
-          files: 'fragments/*, index.ts'
+          files: 'fragments/*, src/index.ts'
