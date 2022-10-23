@@ -5274,43 +5274,56 @@ const globOptions = {
   // core.getInput("follow-symbolic-links").toUpper() !== "FALSE",
 };
 
+const getMissingFiles = (inputFiles, computedFiles) => {
+  const missingFiles = [];
+
+  const joinedComputedFiles = computedFiles.join(",");
+
+  inputFiles.forEach((file) => {
+    console.log(`Checking if file: ${file} exists in computedFiles.`);
+    if (joinedComputedFiles.includes(file)) {
+      console.log("computedFiles includes file. File exists.");
+    } else {
+      missingFiles.push(file);
+    }
+  });
+
+  return missingFiles;
+};
+
 const run = async () => {
+  const computedFiles = [];
+
   try {
-    const missingFiles = [];
+    const inputFiles = core.getInput("files");
 
-    const fileNamesInput = core.getInput("files");
+    core.info(`Checking existence of: ${inputFiles}`);
 
-    core.info(`Files to look for: ${fileNamesInput}`);
+    const formattedFiles = inputFiles.split(",").map((file) => file.trim());
 
-    const files = fileNamesInput.split(",").map((file) => file.trim());
+    const pattern = formattedFiles.join("\n");
 
-    const patterns = files.join("\n");
+    const globber = await glob.create(pattern, globOptions);
 
-    core.info(`Patterns: ${patterns}`);
+    for await (const file of globber.globGenerator()) {
+      core.info("Existing file: ", file);
+      computedFiles.push(file);
+    }
 
-    const globber = await glob.create(patterns, globOptions);
+    const missingFiles = getMissingFiles(formattedFiles, computedFiles);
 
-    const computedFiles = await globber.glob();
+    console.log("Missing files:", missingFiles);
 
-    core.info(`Computed files: ${computedFiles}`);
-    
-    if (computedFiles.length < files.length) {
-      core.setFailed(`Some files are missing`);
-      
+    if (missingFiles.length > 0) {
+      core.setFailed(
+        `Some files are missing: ${missingFiles.split(",").join("\n")}`
+      );
+
       core.setOutput("files_exists", "false");
     } else {
       core.info(`All files exist`);
       core.setOutput("files_exists", "true");
     }
-
-    // for await (const file of globber.globGenerator()) {
-    //   core.info("File of globber: ", file);
-    // }
-
-    // // Get the JSON webhook payload for the event that triggered the workflow
-    // const payload = JSON.stringify(github.context.payload, undefined, 2);
-
-    // console.log(`The event payload: ${payload}`);
   } catch (error) {
     core.setFailed(error.message);
   }
