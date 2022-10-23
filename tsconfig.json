@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "ES2015",
     "module": "esnext",
     "lib": ["esnext"],
     "moduleResolution": "node",
@@ -14,7 +14,7 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": "./",
     "rootDir": "./src",
-    "outDir": "./lib",
+    "outDir": "./dist",
     "tsBuildInfoFile": "./.cache/tsconfig.tsbuildinfo",
     "paths": {
       ".": ["./"],

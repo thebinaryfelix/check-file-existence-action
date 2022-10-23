@@ -5,7 +5,7 @@
   "author": "Mateus Félix <thebinaryfelix@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
+    "build": "yarn test && ncc build ./src/index.ts --license licenses.txt",
     "test": "jest --ci --no-cache --maxWorkers=50% --collectCoverage --detectOpenHandles",
     "test:dev": "jest --maxWorkers=50% --watch --detectOpenHandles",
     "prepare": "husky install"
@@ -23,6 +23,7 @@
     "@types/jest": "^29.2.0",
     "@typescript-eslint/eslint-plugin": "^5.40.1",
     "@typescript-eslint/parser": "^5.40.1",
+    "@vercel/ncc": "^0.34.0",
     "eslint": "^8.26.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-jest": "^27.1.3",
