@@ -26,10 +26,11 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
       - run: yarn install
-      - run: yarn test
+      - run: yarn build
+
 
       - name: Check File Existence
         id: check_files
-        uses: thebinaryfelix/file-existence-action@v0.1-alpha-0.14
+        uses: ./
         with:
           files: 'fragments/*, main.ts, testando.js'
