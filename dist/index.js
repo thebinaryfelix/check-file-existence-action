@@ -5275,6 +5275,8 @@ const run = async () => {
 
     const fileNamesInput = core.getInput("files");
 
+    core.info(`Files to look for: ${fileNamesInput}`);
+
     const files = fileNamesInput
       .split(",")
       .map((file) => file.trim())
@@ -5285,50 +5287,30 @@ const run = async () => {
       // core.getInput("follow-symbolic-links").toUpper() !== "FALSE",
     };
 
+    core.info(`Patterns: ${files}`);
+
     const globber = await glob.create(files, globOptions);
 
     const computedFiles = await globber.glob();
 
-    console.log("Computed files: ", computedFiles);
+    core.info("Computed files: ", computedFiles);
 
-    for await (const file of globber.globGenerator()) {
-      console.log("File of globber: ", file);
+    if (computedFiles.length < fileNamesInput.length) {
+      core.setOutput("files_exists", "false");
+    } else {
+      core.setOutput("files_exists", "true");
     }
 
-    console.log(`Files to look for: ${fileNamesInput}`);
-
-    console.log(`Files: ${files}`);
-
-    // await Promise.all(
-    //   files.map(async (file) => {
-    //     const isPresent = await checkExistence(file);
-
-    //     if (!isPresent) {
-    //       missingFiles.push(file);
-    //     }
-    //   })
-    // );
-
-    // if (missingFiles.length > 0) {
-    //   console.log("Missing files:", missingFiles);
+    // for await (const file of globber.globGenerator()) {
+    //   core.info("File of globber: ", file);
     // }
-
-    // await Promise.all(
-    //   fileList.map(async (file: string) => {
-    //     const isPresent = await checkExistence(file)
-    //     if (!isPresent) {
-    //       missingFiles.push(file)
-    //     }
-    //   })
-    // )
 
     // // Get the JSON webhook payload for the event that triggered the workflow
     // const payload = JSON.stringify(github.context.payload, undefined, 2);
 
     // console.log(`The event payload: ${payload}`);
   } catch (error) {
-    // core.setFailed(error.message);
-    console.log("FAILED:", error);
+    core.setFailed(error.message);
   }
 };
 
