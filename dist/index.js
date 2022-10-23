@@ -5293,13 +5293,13 @@ const run = async () => {
     const computedFiles = await globber.glob();
 
     core.info(`Computed files: ${computedFiles}`);
-
-    console.log('Lengths', `computedFiles.length = ${computedFiles.length}, files.length = ${files.length}`)
-    console.log('typeofs', `typeof computedFiles = ${typeof computedFiles}, typeof files = ${typeof files}`)
-
+    
     if (computedFiles.length < files.length) {
+      core.setFailed(`Some files are missing`);
+      
       core.setOutput("files_exists", "false");
     } else {
+      core.info(`All files exist`);
       core.setOutput("files_exists", "true");
     }
 
