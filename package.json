@@ -1,6 +1,6 @@
 {
   "name": "check-file-existence-action",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": "https://github.com/thebinaryfelix/file-existence-action.git",
   "author": "Mateus Félix <thebinaryfelix@gmail.com>",
   "license": "MIT",
