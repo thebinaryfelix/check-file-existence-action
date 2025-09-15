@@ -6,3 +6,7 @@ node_modules/
 
 # Test reports
 coverage/
+
+# Development environment files
+.env
+.vscode/

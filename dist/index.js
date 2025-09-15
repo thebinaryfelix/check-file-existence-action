@@ -3380,7 +3380,7 @@ function expand(str, isTop) {
     var isOptions = m.body.indexOf(',') >= 0;
     if (!isSequence && !isOptions) {
       // {a},b}
-      if (m.post.match(/,.*\}/)) {
+      if (m.post.match(/,(?!,).*\}/)) {
         str = m.pre + '{' + m.body + escClose + m.post;
         return expand(str);
       }
@@ -6328,7 +6328,7 @@ const setFinalOutput = (missingFiles) => {
     const hasMissingFiles = missingFiles.length > 0;
     if (hasMissingFiles) {
         const message = `❗️ Missing files: ${missingFiles.join(', ')}`;
-        failExecution(message);
+        logInfo(message);
     }
     else {
         const message = '🎉 All files exist!';

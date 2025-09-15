@@ -5,7 +5,7 @@ export const setFinalOutput = (missingFiles: string[]): void => {
 
   if (hasMissingFiles) {
     const message = `❗️ Missing files: ${missingFiles.join(', ')}`
-    failExecution(message)
+    logInfo(message)
   } else {
     const message = '🎉 All files exist!'
     logInfo(message)

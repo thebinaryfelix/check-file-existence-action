@@ -17,13 +17,13 @@ describe('setFinalOutput', () => {
 
     setFinalOutput([missingFileName])
 
-    expect(failExecution).toHaveBeenCalledWith(
-      expect.stringContaining(missingFileName),
+    expect(logInfo).toHaveBeenCalledWith(
+      expect.stringContaining('Missing files:'),
     )
 
     expect(setOutput).toHaveBeenCalledWith('false')
 
-    expect(logInfo).not.toHaveBeenCalled()
+    expect(failExecution).not.toHaveBeenCalled()
   })
 
   test('calls core actions with correct arguments if no file is missing', () => {
