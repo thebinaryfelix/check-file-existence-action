@@ -88,6 +88,12 @@ git commit -m "chore: update dist"
 yarn release
 ```
 
+> **Troubleshooting:** If you get `ERROR No upstream configured for current branch`, your branch has no upstream set. Fix it by pushing with:
+> ```sh
+> git push --set-upstream origin <branch-name>
+> ```
+> Then run `yarn release` again.
+
 This command:
 1. Reads all files in `fragments/` via `news-fragments` and appends them to [CHANGELOG.md](CHANGELOG.md)
 2. Bumps the `version` field in `package.json` via `@release-it/bumper`
