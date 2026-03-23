@@ -12,7 +12,7 @@ The following example [workflow step](https://help.github.com/en/actions/configu
 
 ```yml
 - name: 'Check File Existence'
-  uses: thebinaryfelix/check-file-existence-action@v1
+  uses: thebinaryfelix/check-file-existence-action@vX.X.X # check the latest release
   with:
     files: 'package.json, index.ts, README.md, *.txt'
 ```
@@ -43,11 +43,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v4
 
       - name: Check file existence
         id: check_files
-        uses: thebinaryfelix/check-file-existence-action@v1
+        uses: thebinaryfelix/check-file-existence-action@vX.X.X # check the latest release
         with:
           files: 'package.json, LICENSE, README.md'
 
@@ -56,6 +56,56 @@ jobs:
         # Only runs if all of the files exist
         run: echo "All files exist!"
 ```
+
+# Releasing a New Version
+
+> This process is performed locally by the maintainer.
+
+## Prerequisites
+
+- You are on the `main` branch with a clean working tree
+- All PRs to be included in the release have been merged
+- Each merged PR included a changelog fragment in `fragments/` (encouraged, but not enforced by CI)
+
+## Steps
+
+### Step 1 - Build the distribution
+
+```sh
+yarn build
+```
+
+This compiles the TypeScript source and bundles it into `dist/index.js`, which is the artifact the action executes at runtime. Commit the updated `dist/` if it changed:
+
+```sh
+git add dist/
+git commit -m "chore: update dist"
+```
+
+### Step 2 - Run the release command
+
+```sh
+yarn release
+```
+
+This command:
+1. Reads all files in `fragments/` via `news-fragments` and appends them to [CHANGELOG.md](CHANGELOG.md)
+2. Bumps the `version` field in `package.json` via `@release-it/bumper`
+3. Creates a release commit and a git tag (e.g. `v1.2.0`)
+4. Pushes the commit and tag to `main`
+
+> `HUSKY=0` is set internally in the script to skip git hooks during the automated release commit, preventing `commitlint` from blocking it.
+
+### Step 3 - Update the major version tag (optional)
+
+If the release includes breaking changes, update the floating major tag (e.g. `v1`) to point to the new commit:
+
+```sh
+git tag -fa v1 -m "Update v1 tag"
+git push origin v1 --force
+```
+
+---
 
 # Contribute
 
