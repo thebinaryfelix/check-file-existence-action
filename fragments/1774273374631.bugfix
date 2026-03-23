@@ -1,0 +1,1 @@
+Fix `ignore_case` default value in action.yml from `false` to `true` to match documented behaviour. Fix `follow_symlinks` and `ignore_case` default values from booleans to strings as required by the GitHub Actions schema. Fix typo in `ignore_case` input description.

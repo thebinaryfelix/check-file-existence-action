@@ -1,0 +1,1 @@
+Upgrade actions/checkout from v1 to v4 and actions/setup-node from v3 to v4 in CI workflows. Update Node.js version from 22 to 24 across all workflows to match the action runtime. Update action.yml runtime from node20 to node24.

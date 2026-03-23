@@ -1,0 +1,1 @@
+Add "Releasing a New Version" section to README with step-by-step instructions for the local release process, including build, yarn release, and optional major tag update. Update action usage examples to use a versioned placeholder instead of a hardcoded tag.

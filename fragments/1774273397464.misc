@@ -1,0 +1,1 @@
+Add missing unit tests for checkFileExistence function covering: getBooleanInput called with correct input names, glob resolution with and without files, error rejection, and nocase/follow options correctly passed to glob. Remove exclude of test files from tsconfig.json so the TypeScript language server resolves path aliases in test files.
