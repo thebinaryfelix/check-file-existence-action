@@ -11,11 +11,11 @@ inputs:
   follow_symlinks:
     description: 'Whether to follow symbolic links.'
     required: false
-    default: true
+    default: 'true'
   ignore_case:
-    description: 'Performe a case insentivive match.'
+    description: 'Perform a case-insensitive match.'
     required: false
-    default: false
+    default: 'true'
 outputs:
   exists:
     description: 'Whether the informed file(s) exists or not.'
