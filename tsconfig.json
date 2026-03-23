@@ -2,7 +2,9 @@
   "compilerOptions": {
     "target": "ES2015",
     "module": "esnext",
-    "lib": ["esnext"],
+    "lib": [
+      "esnext"
+    ],
     "moduleResolution": "node",
     "strict": true,
     "allowJs": true,
@@ -17,10 +19,19 @@
     "outDir": "./dist",
     "tsBuildInfoFile": "./.cache/tsconfig.tsbuildinfo",
     "paths": {
-      ".": ["./"],
-      "~/*": ["src/*"]
+      ".": [
+        "./"
+      ],
+      "~/*": [
+        "src/*"
+      ]
     }
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", "**/*.test.ts"]
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.test.ts"
+  ]
 }
